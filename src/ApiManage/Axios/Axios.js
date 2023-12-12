@@ -46,7 +46,7 @@ Axios.interceptors.response.use(
         // If refresh token request fails, use your other endpoint to generate a new refresh token
         try {
           const newRefreshResponse = await Axios.post(
-            '/auction_app.gauth.generate_token_secure',
+            'auction_app.gauth.generate_token_secure',
             new URLSearchParams({
               api_key: import.meta.env.VITE_Api_Key,
               api_secret: import.meta.env.VITE_Api_Secret,
@@ -80,7 +80,7 @@ Axios.interceptors.response.use(
     // For other errors, continue to reject the request
     return Promise.reject(error);
   }
-  console.log("out");
+  
 );
 
 export default Axios;

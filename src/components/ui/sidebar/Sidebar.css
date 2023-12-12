@@ -1,0 +1,346 @@
+.closedsidebar{
+  margin-top: 0%;
+}
+.containerforsidebar {
+  width: 190px;
+  height: 1000px;
+  background-color: #242424;
+  
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  transition: all 0.1s ease;  
+}
+
+.message-element {
+  cursor: pointer;
+}
+
+.closedprofile{
+  width: 40%;
+}
+.closedalarm{
+  margin-left: 1120px;
+  width: 40%;
+}
+.openalarm{
+  margin-left: 980px;
+
+}
+.Akamai {
+  width: 170px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  margin-left: 9px;
+  margin-top: -70px;
+}
+
+.names {
+  margin-left: 30px;
+}
+
+.bottomline {
+  border-bottom: 1px solid Black;
+}
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.message-element {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.message-element.unseen {
+  background-color: #ffcccc; /* Background color for 'unseen' messages */
+  color: red; /* Text color for 'unseen' messages */
+}
+
+.message-element.seen {
+  background-color: #fffacd; /* Background color for 'seen' messages */
+  color: #494915; /* Text color for 'seen' messages */
+}
+.indicator-text {
+  font-size: 0.7em; /* Adjust the overall text size */
+  margin-bottom: 5px; /* Add spacing between the indicator text and messages */
+}
+
+.indicator-label {
+  margin-right: 5px; /* Add spacing between the labels and dots */
+}
+
+.no-messages {
+  margin-top: 10px;
+  color: gray;
+}
+.toggle-btn {
+  margin-top: -2px;
+  margin-left: 190px;
+  color: black;
+  height: 70px;
+  width: 1350px;
+  background-color: #242424;
+  
+}
+.image{
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  
+}
+.alarm{
+width: 50px;
+height: 45px;
+margin-left: ${isSidebarOpen ? '20px' : '980px'};
+}
+.profile{
+width: 50px;
+height: 55px;
+margin-left: 10px;
+
+}
+.profile-box {
+position: absolute;
+top: 70px;
+right: 10px;
+background-color: #413d3d;
+width: 200px;
+height: 300px;
+color: white;
+padding-left: 20px;
+border-radius: 7%;
+box-shadow: 1px 2px 5px 2px black;
+
+}
+.msg-box {
+position: absolute;
+top: 70px;
+right: 15%; 
+background-color: #413d3d;
+width: 16%;
+height: 300px;
+color: white;
+padding-left: 20px;
+border-radius: 7%;
+box-shadow: 1px 2px 5px 2px black;
+overflow: auto;
+cursor: pointer;
+ 
+}
+
+.message-items {
+padding-left: 5%;
+cursor: pointer;
+}
+.showmore{
+text-align: center;
+width: 100%;
+height: 10%;
+margin-top: 10px;
+
+}
+
+@media (max-width: 400px) {
+.containerforsidebar{
+    margin-top: -130px;
+}
+.closedsidebar{
+    margin-top:-160px ;
+    
+  
+}
+.alarm{
+  margin-left: 10px;
+  
+}
+.closedalarm{
+  margin-left: 250px;
+}
+.openalarm{
+  margin-left: 20px;
+}
+.toggle-btn{
+  width: 245%;
+}
+.msg-box {
+  position: absolute;
+  top: 70px;
+  right: 14%; 
+  background-color: #413d3d;
+  width: 45%;
+  height: 300px;
+  color: white;
+  padding-left: 20px;
+  border-radius: 7%;
+  box-shadow: 1px 2px 5px 2px black;
+  overflow: auto;
+}
+}
+@media (min-width: 400px) and (max-width: 500px) {
+.alarm {
+  margin-left: 190px;
+  
+}
+
+.msg-box {
+  position: absolute;
+  top: 70px;
+  right: 14%; 
+  background-color: #413d3d;
+  width: 45%;
+  height: 300px;
+  color: white;
+  padding-left: 20px;
+  border-radius: 7%;
+  box-shadow: 1px 2px 5px 2px black;
+  overflow: auto;
+}
+
+.toggle-btn {
+  width: 250%;
+}
+.closedalarm{
+  margin-left: 170px;
+}
+.openalarm{
+  margin-left: 20px;
+}
+.containerforsidebar{
+  margin-top: -10px;
+}
+.closedsidebar{
+  margin-top:-10px ;
+
+}
+}
+
+
+  
+@media (min-width: 600px) and (max-width:800px) {
+.alarm{
+  margin-left: 350px;
+
+}
+
+.containerforsidebar{
+  margin-top: -10px;
+
+}
+.closedalarm{
+  margin-left: 400px;
+}
+.openalarm{
+  margin-left: 220px;
+}
+.msg-box {
+  position: absolute;
+  top: 70px;
+  right: 14%; 
+  background-color: #413d3d;
+  width: 45%;
+  height: 300px;
+  color: white;
+  padding-left: 20px;
+  border-radius: 7%;
+  box-shadow: 1px 2px 5px 2px black;
+  overflow: auto;
+
+}
+}
+@media (min-width: 800px) and (max-width:1000px){
+.alarm{
+  margin-left: 350px;
+
+}
+
+.containerforsidebar{
+  margin-top: -10px;
+
+}
+.closedalarm{
+  margin-left: 600px;
+}
+.openalarm{
+  margin-left: 420px;
+}
+.msg-box {
+  position: absolute;
+  top: 70px;
+  right: 14%; 
+  background-color: #413d3d;
+  width: 45%;
+  height: 300px;
+  color: white;
+  padding-left: 20px;
+  border-radius: 7%;
+  box-shadow: 1px 2px 5px 2px black;
+  overflow: auto;
+}
+}
+@media (min-width: 1000px) and (max-width:1150px){
+.alarm{
+  margin-left: 350px;
+
+}
+
+.containerforsidebar{
+  margin-top: -10px;
+
+}
+.closedalarm{
+  margin-left: 830px;
+}
+.openalarm{
+  margin-left: 640px;
+}
+.msg-box {
+  position: absolute;
+  top: 70px;
+  right: 14%; 
+  background-color: #413d3d;
+  width: 45%;
+  height: 300px;
+  color: white;
+  padding-left: 20px;
+  border-radius: 7%;
+  box-shadow: 1px 2px 5px 2px black;
+  overflow: auto;
+}
+}
+@media (min-width: 1150px) and (max-width:1150px){
+.alarm{
+  margin-left: 350px;
+
+}
+
+.containerforsidebar{
+  margin-top: -10px;
+
+}
+.closedalarm{
+  margin-left: 830px;
+}
+.openalarm{
+  margin-left: 640px;
+}
+.msg-box {
+  position: absolute;
+  top: 70px;
+  right: 14%; 
+  background-color: #413d3d;
+  width: 45%;
+  height: 300px;
+  color: white;
+  padding-left: 20px;
+  border-radius: 7%;
+  box-shadow: 1px 2px 5px 2px black;
+  overflow: auto;
+}
+}

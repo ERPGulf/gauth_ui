@@ -1,42 +1,79 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 1px;
+  
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.abc{
+  color: lightblue;
+  margin-top: -900px;
+  margin-left: 200px;
+  
+  padding-bottom: 10px;
+  
+
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.app-container{
+  transition: all 0.1s ease; 
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.xyz{
+  margin-top: 800px;
+}
+.bbb{
+  margin-right: 40px;
+  font-size: 17px;
+  cursor: pointer;
+  
+}
+.bbb:hover{
+  padding-bottom: 5px;
+  border-bottom: 5px solid white;
+  border-radius: 5px;
+  
+}
+.bottomlines{
+  border-bottom: 1px solid Black;
+  width: 1150px;
+  padding-bottom: 4px;
+  margin-top: -0.2px;
+
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-container{
+  transition: all 0.3s ease-in;
+}
+.closedd{
+  margin-left: -15%;
+  
+}
+.closedline{
+  width: 1295px;
+}
+@media (max-width: 600px) {
+  .bbb{
+    font-size: 12px;
+    margin-right: 10px;
   }
-  to {
-    transform: rotate(360deg);
+  .bottomlines{
+    width: 47%;
+  }
+  .closedd{
+    margin-left: -35%;
+    width: 270%;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 600px) and (max-width:800px){
+  .closedd{
+    margin-left: -12%;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .bbb{
+    font-size: 14px;
+    margin-right: 25px;
+  }
+  .abc{
+    margin-left: 195px;
+  }
+  .closedd{
+    margin-left: -15%;
+  }
 }
