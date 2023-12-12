@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Axios from "../../../ApiManage/Axios/Axios";
-import "./SideBar.css";
-
+import "./Sidebar.style.css";
+import { generateToken, getMessages } from "../../../ApiManage/ApiHelper";
 
 const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
   const [showProfileBox, setShowProfileBox] = useState(false);
   const [showMsgBox, setShowMsgBox] = useState(false);
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
-
 
   const toggleProfileBox = (event) => {
     event.stopPropagation();
@@ -35,34 +33,19 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
         setLoading(true);
 
         // Get the access token from local storage
-        const accessToken = localStorage.getItem('access_token');
-        console.log('Access Token:', accessToken);
 
         // Set the authorization header with the access token
-        Axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
-        // Make the GET request
-        const thirdApi = await Axios.post(
-          'employee_app.attendance_api.error_log',
-          {
-            limit_start: 0,
-            limit_page_length: 50,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Authorization': `Bearer ${accessToken}`,
-              'Cookie': 'full_name=Guest; sid=Guest; system_user=no; user_id=Guest; user_image=',
-            },
-          }
-        );
+        getMessages()
+          .then((response) => {
+            console.log(response);
+            setMessages(response.message);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
         // Check if the response is defined and has the headers property
-        if (response) {
-          setMessages(response.data.message);
-        } else {
-          console.error('Invalid response:', response);
-        }
       } catch (error) {
         console.error("Error fetching messages:", error);
       } finally {
@@ -74,8 +57,20 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
       fetchData();
     }
   }, [showMsgBox]);
+
+  const handleLogin = () => {
+    generateToken()
+      .then((response) => {
+        alert("Login Successful");
+      })
+      .catch((error) => {
+        alert("Login Failed");
+      });
+  };
   return (
-    <div className={`containerforsidebar ${isSidebarOpen ? '' : 'closedsidebar'}`}>
+    <div
+      className={`containerforsidebar ${isSidebarOpen ? "" : "closedsidebar"}`}
+    >
       <div className="toggle-btn">
         <img
           className="image"
@@ -84,13 +79,13 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
           alt="Toggle Sidebar"
         />
         <img
-          className={`alarm ${isSidebarOpen ? 'openalarm' : 'closedalarm'}`}
+          className={`alarm ${isSidebarOpen ? "openalarm" : "closedalarm"}`}
           src="https://cdn-icons-png.flaticon.com/512/20/20147.png"
           alt="Messages"
           onClick={toggleMsgBox}
         />
         <img
-          className={`profile ${isSidebarOpen ? '' : 'closedprofile'}`}
+          className={`profile ${isSidebarOpen ? "" : "closedprofile"}`}
           src="https://static.thenounproject.com/png/638636-200.png"
           alt="Profile"
           onClick={toggleProfileBox}
@@ -106,12 +101,14 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
       <h3 className="names">NodeBalancers</h3>
       <h3 className="names">Firewalls</h3>
       <h3 className="names">Images</h3>
+      <button className="names" onClick={handleLogin}>
+        login
+      </button>
 
       {showProfileBox && (
         <div className="profile-box">
           <p>User: John Doe</p>
           <p>Email: john.doe@example.com</p>
-          
         </div>
       )}
 
@@ -124,7 +121,9 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
             <ul>
               {messages.map((message) => (
                 <li key={message.name}>
-                  <strong>Method:</strong> {message.method}, <strong>Name:</strong> {message.name}, <strong>Seen:</strong> {message.seen}
+                  <strong>Method:</strong> {message.method},{" "}
+                  <strong>Name:</strong> {message.name}, <strong>Seen:</strong>{" "}
+                  {message.seen}
                 </li>
               ))}
             </ul>
