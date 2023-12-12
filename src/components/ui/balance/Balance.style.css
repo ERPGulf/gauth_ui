@@ -1,0 +1,121 @@
+.upcontainer{
+    width: 570px;
+    height: 80px;
+    color: white;
+    margin-bottom: 8px;
+    background-color: #242424;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    margin-top: -750px;
+    margin-left: 200px;
+    transition: all 0s ease;
+    
+}
+.containerforbalance{
+    margin-left: 200px;
+    width: 570px;
+    height: 200px;
+    color: white;
+   
+    background-color: #242424;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    transition: all 0s ease;
+}
+.closedupcontainer{
+    
+    width: 45%;    
+}
+.closedbalance{
+    width: 45%;
+    
+}
+
+.heading{
+    font-size: 15px;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    margin-top: 9px;
+    border-bottom: 1px solid black;
+    
+    
+}
+.h3{
+    font-size: 15px;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    margin-top: 9px;
+
+}
+.tr{
+    margin-top: 1px;
+
+}
+.p{
+    display: block;
+    padding-bottom: 12px;
+    margin-block-start:0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.datas{
+    padding-left:10px;
+}
+.editbutton{
+    padding-left: 17rem;
+    color: lightblue;
+    cursor: pointer;
+}
+@media (max-width: 500px) {
+    .upcontainer{
+        width: 30%;
+        
+    }
+    .containerforbalance{
+        width: 30%;
+        
+    }
+    .closedupcontainer,.closedbalance{
+        width: 80%;
+    }
+}
+@media (min-width: 500px) and (max-width:600px) {
+    .upcontainer{
+        width: 40%;
+    }
+    .containerforbalance{
+        width: 40%;
+    }
+}
+@media (min-width: 600px) and (max-width:800px){
+    .upcontainer{
+        width: 27%;
+        margin-left: 200px;
+        margin-top: -790px;
+    }
+    .containerforbalance{
+        width: 27%;
+        margin-left: 200px;
+    }
+    .editbutton{
+        margin-left: -50px;
+    }
+}
+@media (min-width: 800px) and (max-width:1000px){
+    .upcontainer{
+        width: 30%;
+        margin-left: 200px;
+        margin-top: -790px;
+    }
+    .containerforbalance{
+        width: 30%;
+        margin-left: 200px;
+    }
+    .editbutton{
+        margin-left: -20px;
+    }
+}

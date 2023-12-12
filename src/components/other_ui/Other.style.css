@@ -1,0 +1,26 @@
+.maintanancebox{
+    height: 400px;
+    width: 800px;
+    margin-left: 300px;
+    margin-top: -700px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    background-color: #242424;
+}
+@media (max-width: 500px){
+    .maintanancebox {
+        margin-left: 200px;
+        width: 25%;
+        
+    }
+}
+@media (min-width: 600px) and (max-width:800px){
+    .maintanancebox {margin-left: 200px;
+        width: 40%;}
+}
+
+@media (min-width: 800px) and (max-width:1000px){
+    .maintanancebox {margin-left: 200px;
+        width: 60%%;}
+}
