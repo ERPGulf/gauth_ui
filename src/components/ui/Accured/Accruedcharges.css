@@ -1,0 +1,90 @@
+
+.upaccruedcontainer{
+    width: 570px;
+    height: 80px;
+    color: white;
+    margin-bottom: 8px;
+    background-color: #242424;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    
+    margin-top: -292px;
+    transition: all 0s ease;
+    margin-left: ${isSidebarOpen ? '20px' : '980px'};
+    
+}
+.containerforaccrued{
+  
+    width: 570px;
+    height: 200px;
+    color: white;
+    background-color: #242424;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    transition: all 0s ease;
+    margin-left: ${isSidebarOpen ? '20px' : '980px'};
+}
+.closedaccrued{
+  width: 45%;
+  margin-left: 800px;
+  
+}
+.openacc{
+  width: 50%;
+
+}
+.addpay{
+  padding-left:15rem;
+  color: lightblue;
+    cursor: pointer;
+}
+.adata1{
+  margin-left:10px;
+}
+.adata2{
+  margin-left:10px;
+}
+.default{
+  margin-left:10px;
+}
+.box{
+  margin-left: 10px;
+  margin-right: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+    height: 50px;
+}
+.marginstyle{
+  margin-left:10px;
+}
+@media (max-width: 500px) {
+  .upaccruedcontainer, .containerforaccrued{
+    display: none;
+  }
+}
+@media (min-width: 500px) and (max-width:600px) {
+  .upaccruedcontainer, .containerforaccrued{
+    display: none;
+  }
+}
+@media (min-width: 600px) and (max-width:800px){
+  .upaccruedcontainer,.containerforaccrued{
+    margin-left: 560px;
+    width: 27%;
+  }
+  .addpay{
+    margin-left: -190px;
+  }
+}
+@media (min-width: 800px) and (max-width:1000px){
+  .upaccruedcontainer,.containerforaccrued{
+    margin-left: 630px;
+    width: 28%;
+  }
+  .addpay{
+    margin-left: -120px;
+  }
+}
