@@ -114,7 +114,10 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
 
       {showMsgBox && (
         <div className="msg-box">
-          <p>Messages</p>
+          <p className="title">Messages</p>
+            <p className="indicator-text">
+              Seen <span style={{ color: 'green' }}>●</span> Unseen <span style={{ color: 'red' }}>●</span>
+            </p>
           {loading ? (
             <p>Loading messages...</p>
           ) : (
