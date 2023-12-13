@@ -1,16 +1,17 @@
 import React, { useState,useEffect } from 'react';
-import './App.css';
-import Sidebar from '../components/ui/sidebar';
-import Balance from '../components/ui/Balance/Balance';
-import Accruedcharges from '../components/ui/Accured/Accruedcharges';
-import History from '../components/ui/History'
-import Maintanance from '../components/other_ui/Maintanance';
-import User from '../components/other_ui/User';
-import Login from '../components/other_ui/Login';
-import Service from '../components/other_ui/Service';
-import Settings from '../components/other_ui/Settings';
+import './Loggedin.style.css';
+import Sidebar from '../../components/ui/sidebar/Sidebar';
+import Balance from '../../components/ui/balance/Balance';
+import Accruedcharges from '../../components/ui/Accured/Accruedcharges';
+import History from '../../components/ui/History/History'
+import Maintanance from '../../components/other_ui/Maintanance';
+import User from '../../components/other_ui/User';
+import LoginHistory from '../../components/other_ui/LoginHistory';
+import Service from '../../components/other_ui/Service';
+import Settings from '../../components/other_ui/Settings';
 
-function loggedin() {
+
+function Loggedin() {
     const [selectedOpen, setOpen] = useState('billing');
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const handleOpenClick = (selectedMenu) => {
@@ -44,7 +45,7 @@ function loggedin() {
         <div className='abc'>
         <span className='bbb' onClick={() => handleOpenClick('billing')}>Billing Info</span>
         <span className='bbb' onClick={() => handleOpenClick('user')}>Users & Grants</span>
-        <span className='bbb' onClick={() => handleOpenClick('Login')}>Login History</span>
+        <span className='bbb' onClick={() => handleOpenClick('LoginHistory')}>Login History</span>
         <span className='bbb' onClick={() => handleOpenClick('Service')}>Service Transfers</span>
         <span className='bbb' onClick={() => handleOpenClick('maintenance')}> Maintenance</span>
         <span className='bbb' onClick={() => handleOpenClick('settings')}> Settings</span>
@@ -73,4 +74,4 @@ function loggedin() {
       </div>
     );
   }
-export default loggedin;
+export default Loggedin;

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
+import { isUserAvailable, generateToken } from '../../ApiManage/ApiHelper';
+
 
 export const Signup = () => {
   const [email, setEmail] = useState('');
@@ -10,28 +12,42 @@ export const Signup = () => {
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [existingAccountError, setExistingAccountError] = useState('');
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Mark the form as submitted
     setIsFormSubmitted(true);
-
-    // Check if both email and phone are valid before submitting
-    if (isValidEmail && isValidPhone) {
-      // Handle form submission logic here, e.g., send a request to the server
-      console.log('Form submitted:', { email, phone });
-    } else {
-      console.log('Invalid email or phone number');
-    }
+    generateToken()
+      .then(async (response) => {
+        // Check if the user is available
+        try {
+          const userAvailability = await isUserAvailable(phone, email);
+  
+          // If the user is not available, set an error message and navigate to the login page
+          if (!userAvailability.available) {
+            setExistingAccountError('Account with this email or phone number already exists. Please login');
+            return;
+          }
+        } catch (error) {
+          console.error('Error checking user availability:hib', error);
+          navigate('/Newuser');
+          return;
+        }
+      })
+      .catch((error) => {
+        alert("Error");
+      });
   };
+  
+    
 
   const handleLoginClick = () => {
     // Trigger navigation to the login page
-    navigate('/Login');
-  };
+    navigate('/');
 
+  };
   const handleEmailChange = (e) => {
     const enteredEmail = e.target.value;
     // Use a regex pattern for basic email validation
@@ -41,12 +57,13 @@ export const Signup = () => {
     // Update the email state
     setEmail(enteredEmail);
     setEmailErrorMessage(emailRegex.test(enteredEmail) ? '' : 'Please enter a valid email.');
+    
   };
 
   const handlePhoneChange = (e) => {
     const enteredPhone = e.target.value;
     // Use a regex pattern to match 8 digits
-    const phoneRegex = /^\d{8}$/;
+    const phoneRegex = /^\d{10}$/;
     setIsValidPhone(phoneRegex.test(enteredPhone));
 
     // Update the phone state
@@ -56,6 +73,7 @@ export const Signup = () => {
     setPhoneErrorMessage(phoneRegex.test(enteredPhone) ? '' : 'Please enter a valid 8-digit phone number.');
   };
 
+
   return (
     <div className='containerr'>
       <img
@@ -64,7 +82,7 @@ export const Signup = () => {
         alt='Signup'
       />
       <h3 className='create'>Create Your Account</h3>
-      <p>Sign up for HashiCorp to continue</p>
+      <p style={{ marginLeft: '15%', color: 'black' }}>Sign up for HashiCorp to continue</p>
       <form onSubmit={handleSubmit}>
         {/* Email Input */}
         <label htmlFor='email'></label>
@@ -74,7 +92,7 @@ export const Signup = () => {
           id='email'
           name='email'
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => handleEmailChange(e)}
           required
           placeholder='Email address'
         />
@@ -85,11 +103,11 @@ export const Signup = () => {
           id='phone'
           name='phone'
           value={phone}
-          onChange={handlePhoneChange}
+          onChange={(e) => handlePhoneChange(e)}
           required
           placeholder='Phone number'
         />
-        
+
         {/* Signup Button */}
         <p></p>
         <button className='continue' type='submit'>
@@ -97,12 +115,13 @@ export const Signup = () => {
         </button>
       </form>
       {/* Log in Link */}
-      <p>
+      <p style={{ color: 'black', marginLeft: '15%' }}>
         Already have an account?{' '}
         <span style={{ color: 'blue', cursor: 'pointer' }} onClick={handleLoginClick}>
           Log in
         </span>
       </p>
+
       {/* Display error message for phone number if form is submitted */}
       {isFormSubmitted && (
   <p style={{ color: 'red' }}>
@@ -112,6 +131,10 @@ export const Signup = () => {
   </p>
 )}
 
+      {/* Display error message for existing account if form is submitted */}
+      {isFormSubmitted && existingAccountError && (
+        <p style={{ color: 'red' }}>{existingAccountError}</p>
+      )}
     </div>
   );
 };

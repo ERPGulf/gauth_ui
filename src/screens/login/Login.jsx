@@ -14,9 +14,13 @@ const Login = () => {
     console.log('Form submitted:', { identifier, password });
   };
 
-  const handleLoginClick = () => {
+  const handleForgetClick = () => {
     // Trigger navigation to the login page
-    navigate('/Forgotten');
+    navigate('/Forgotpassword');
+  };
+  const handleSignupClick = () => {
+    // Trigger navigation to the Signup page
+    navigate('/Signup');
   };
 
   return (
@@ -27,7 +31,7 @@ const Login = () => {
         alt='Login'
       />
       <h3 className='create'>Login Your Account</h3>
-      <p>Login for HashiCorp to continue</p>
+      <p style={{marginLeft:'15%',color:'black'}}>Login for HashiCorp to continue</p>
       <form onSubmit={handleSubmit}>
         {/* Email or Phone Input */}
         <label htmlFor='identifier'></label>
@@ -61,8 +65,11 @@ const Login = () => {
       </form>
       <p>
         
-        <span style={{ color: 'blue', cursor:'pointer' }} onClick={handleLoginClick}>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleForgetClick}>
           Forgot Password?
+        </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleSignupClick}>
+          New user?
         </span>
       </p>
     </div>
