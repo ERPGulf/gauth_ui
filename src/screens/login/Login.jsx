@@ -9,6 +9,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate('/Loggedin')
 
     // You can handle the form submission logic here, e.g., send a request to the server
     console.log('Form submitted:', { identifier, password });

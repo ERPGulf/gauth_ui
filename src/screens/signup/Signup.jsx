@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
 import { isUserAvailable, generateToken } from '../../ApiManage/ApiHelper';
+import Newuser from '../newuser/Newuser';
+import UserContext from '../../Contexts/User/UserContext';
 
 
 export const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPhone, setIsValidPhone] = useState(true);
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
@@ -14,6 +15,8 @@ export const Signup = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [existingAccountError, setExistingAccountError] = useState('');
   const navigate = useNavigate();
+  const { userData, updateUser } = useContext(UserContext);
+  const { email, phone } = userData;
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +34,7 @@ export const Signup = () => {
             return;
           }
         } catch (error) {
-          console.error('Error checking user availability:hib', error);
+          console.error('Error checking user availability:', error);
           navigate('/Newuser');
           return;
         }
@@ -55,7 +58,9 @@ export const Signup = () => {
     setIsValidEmail(emailRegex.test(enteredEmail));
 
     // Update the email state
-    setEmail(enteredEmail);
+    updateUser(enteredEmail);
+    console.log('email',enteredEmail);
+    
     setEmailErrorMessage(emailRegex.test(enteredEmail) ? '' : 'Please enter a valid email.');
     
   };
@@ -67,15 +72,18 @@ export const Signup = () => {
     setIsValidPhone(phoneRegex.test(enteredPhone));
 
     // Update the phone state
-    setPhone(enteredPhone);
+    updateUser(enteredPhone);
+    console.log('phone',enteredEmail);
 
     // Update the error message based on phone validation
     setPhoneErrorMessage(phoneRegex.test(enteredPhone) ? '' : 'Please enter a valid 8-digit phone number.');
   };
 
-
+  
   return (
+    
     <div className='containerr'>
+      
       <img
         className='loginimage'
         src='https://www.freeiconspng.com/thumbs/podcast-icon/podcast-icon-19.jpg'
@@ -135,6 +143,7 @@ export const Signup = () => {
       {isFormSubmitted && existingAccountError && (
         <p style={{ color: 'red' }}>{existingAccountError}</p>
       )}
+       
     </div>
   );
 };

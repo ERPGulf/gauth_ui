@@ -1,0 +1,32 @@
+.newuser{
+    border-style: solid;
+    border-color: white;
+    background-color: white;
+    border-width: 1px;
+    width: 400px;
+    height: 500px;
+    box-shadow: 1px 1px 10px 15px rgb(235, 229, 229);
+    border-radius: 2%;
+    margin-left: 120%;
+}
+.username{
+    background-color: white;
+    width: 240px;
+    height: 35px;
+    padding-left: 20px;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    margin-left: 15%;
+}
+.Password{
+    background-color: white;
+    width: 240px;
+    height: 35px;
+    padding-left: 20px;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    margin-left: 15%;
+
+}
