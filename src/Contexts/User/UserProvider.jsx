@@ -8,11 +8,12 @@ const UserProvider = ({ children }) => {
   });
 
   const updateUser = (email, phone) => {
-    setUserData({
-      email,
-      phone,
-    });
+    setUserData((prevUserData) => ({
+      email: email !== undefined ? email : prevUserData.email,
+      phone: phone !== undefined ? phone : prevUserData.phone,
+    }));
   };
+  
 
   return (
     <UserContext.Provider value={{ userData, updateUser }}>

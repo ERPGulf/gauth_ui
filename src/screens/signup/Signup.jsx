@@ -70,11 +70,11 @@ export const Signup = () => {
     // Use a regex pattern to match 8 digits
     const phoneRegex = /^\d{10}$/;
     setIsValidPhone(phoneRegex.test(enteredPhone));
-
+  
     // Update the phone state
-    updateUser(enteredPhone);
-    console.log('phone',enteredEmail);
-
+    updateUser(undefined, enteredPhone); // Pass undefined for email to keep it unchanged
+    console.log('phone', enteredPhone);
+  
     // Update the error message based on phone validation
     setPhoneErrorMessage(phoneRegex.test(enteredPhone) ? '' : 'Please enter a valid 8-digit phone number.');
   };

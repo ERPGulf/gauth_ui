@@ -25,8 +25,12 @@ const Newuser = () => {
       const newAccount = await createUser(name, email, phone, password);
       console.log(newAccount);
 
-      // Assuming you want to do something with the reset_key
-      setResetkey(newAccount.reset_key);
+      if (newAccount.reset_key) {
+        console.log('Reset Key:', newAccount.reset_key);
+        // Optionally, you can set the reset_key in the component state
+        setResetkey(newAccount.reset_key);
+      }
+      
     } catch (error) {
       console.error('Error in creating new account:', error);
       alert('Error in creating new account');
@@ -68,7 +72,13 @@ const Newuser = () => {
           Signup
         </button>
       </form>
-      newuser
+      {/* Display reset_key if available */}
+      {reset_key && (
+        <div>
+          <p style={{color: 'black'}}>Reset Key: {reset_key}</p>
+          {/* You can add additional UI or actions related to the reset_key here */}
+        </div>
+      )}
     </div>
   );
 };
