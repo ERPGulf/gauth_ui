@@ -1,9 +1,9 @@
 import React from 'react'
 import './Other.style.css';
-const Login = () => {
+const LoginHistory = () => {
   return (
     <div className='maintanancebox'>Login</div>
   )
 }
 
-export default Login
+export default LoginHistory

@@ -1,0 +1,13 @@
+.containerr{
+    border-style: solid;
+    border-color: white;
+    background-color: white;
+    border-width: 1px;
+    width: 400px;
+    height: 500px;
+    box-shadow: 1px 1px 10px 15px rgb(235, 229, 229);
+    border-radius: 2%;
+    margin-left: 120%;
+}
+
+
