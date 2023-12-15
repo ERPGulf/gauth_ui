@@ -75,7 +75,7 @@ const Newuser = () => {
       {/* Display reset_key if available */}
       {reset_key && (
         <div>
-          <p style={{color: 'black'}}>Reset Key: {reset_key}</p>
+          <p style={{color: 'black', marginLeft:'15%',fontSize:'25px'}}> Your Reset Key: {reset_key}</p>
           {/* You can add additional UI or actions related to the reset_key here */}
         </div>
       )}
