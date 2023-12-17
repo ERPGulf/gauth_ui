@@ -10,9 +10,7 @@ export const generateToken = async () => {
       new URLSearchParams({
         api_key: import.meta.env.VITE_Api_Key,
         api_secret: import.meta.env.VITE_Api_Secret,
-        app_key: btoa(
-          "335f7d2e33816355bb5d0c17b67b32d597a784afa96547db1ecda4f188c52c51"
-        ),
+        app_key: import.meta.env.VITE_App_key,
       }).toString(),
       {
         headers: {
