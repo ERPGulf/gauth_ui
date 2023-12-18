@@ -80,3 +80,89 @@ export const getMessages = async () => {
     return Promise.reject(error);
   }
 };
+
+
+
+export const isUserAvailable = async (mobilePhone, userEmail) => {
+  try {
+    const accessToken = localStorage.getItem("access_token");
+
+    // Make the POST request
+    const { data } = await instance.post(
+      'auction_app.gauth.is_user_available',
+      {
+        mobile_phone: mobilePhone,
+        user_email: userEmail,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return Promise.resolve(data);
+  } catch (error) {
+    console.error(`Error checking user availability: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
+export const createUser = async (name, userEmail, mobilePhone, password) => {
+  try {
+    const accessToken = localStorage.getItem("access_token");
+
+    // Create form data
+    const formData = new FormData();
+    formData.append('full_name', name);
+    formData.append('password', password);
+    formData.append('mobile_no', mobilePhone);
+    formData.append('email', userEmail);
+    formData.append('role', 'Auction');
+
+    // Make the POST request
+    const { data } = await instance.post(
+      'gauth.gauth.gauth.g_create_user',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return Promise.resolve(data);
+  } catch (error) {
+    console.error(`Error creating new user account: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
+
+export const generateResetPasswordKey = async () => {
+  try {
+    const accessToken = localStorage.getItem("access_token");
+
+    const formData = new URLSearchParams();
+    formData.append('user', 'hiba@gmail,com'); // Use the passed email parameter
+
+    // Make the POST request
+    const { data } = await instance.post(
+      'auction_app.gauth.g_generate_reset_password_key',
+      formData.toString(), // Convert FormData to a URL-encoded string
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return Promise.resolve(data);
+  } catch (error) {
+    console.error(`Error creating reset key: ${error}`);
+    return Promise.reject(error);
+  }
+};

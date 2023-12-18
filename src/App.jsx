@@ -1,41 +1,28 @@
-import React, { useState,useEffect } from 'react';
-import './App.css';
-import Sidebar from './components/ui/sidebar/Sidebar';
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Signup } from './screens/signup/Signup';
+import Loggedin from './screens/Loggedin/Loggedin';
+import Login from './screens/login/Login';
+import Newuser from './screens/newuser/Newuser';
+import UserProvider from './Contexts/User/UserProvider';
+import Forgetpassword from './screens/forgetpassword/Forgetpassword';
 
 
 
 function App() {
-  const [selectedOpen, setOpen] = useState('billing');
-  const [isSidebarOpen, setSidebarOpen] = useState(true);
-  const handleOpenClick = (selectedMenu) => {
-    setOpen(selectedMenu);
-  };
-
-  const handleSidebarToggle = () => {
-    setSidebarOpen(!isSidebarOpen);
-  };
-
-  useEffect(() => {
-    
-    if (window.innerWidth <= 1050) {
-      setSidebarOpen(false);
-    }
-    const handleResize = () => {
-      setSidebarOpen(window.innerWidth > 1050);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []); 
-
-  return ( 
-    <div className={`app-container ${isSidebarOpen ? '' : 'closedd'}`}>
-      
-      <Sidebar onSidebarToggle={handleSidebarToggle} isSidebarOpen={isSidebarOpen}/>
-
+  return(
+    <div>
+      <Router>
+        <UserProvider>
+          <Routes>
+            <Route path='/Signup' element={<Signup/>}/>
+            <Route path='/' element={<Login/>}/>
+            <Route path='/Forgotpassword' element={<Forgetpassword/>}/>
+            <Route path='/Loggedin' element={<Loggedin/>}/>
+            <Route path='/Newuser' element={<Newuser/>}/>
+          </Routes>
+        </UserProvider>
+      </Router>
     </div>
   );
 }

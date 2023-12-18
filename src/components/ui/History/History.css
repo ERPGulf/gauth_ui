@@ -1,0 +1,137 @@
+.containerforhistory{
+    width: 1150px;
+    height: auto;
+    color: white;
+    margin-top: 10vh;
+    margin-left: 200px;
+    background-color: #242424;
+    transition: all 0.1s ease;
+ 
+}
+.closedhistory{
+    width: 0%;
+    
+
+}
+.item1{
+    margin-left: 400px;
+    display: flex;
+}
+.options{
+        margin-Top: -10px; 
+        margin-left: 500px;
+        padding: 10px;
+    
+}
+.amount{
+    margin-left:315px;
+}
+@media(max-width: 500px) {
+    .containerforhistory{
+        width: 40%;
+        margin-top: -2px;
+    }
+    .amount{
+        margin-left: 120px;
+    }
+    .options{
+        margin-left: 320px;
+        width: 15%;
+        height: 20%;
+        
+    }
+    .closedhistory{
+        width: 80%;
+    }
+    .item1{
+        margin-left: 200px;
+        margin-top: -15px;
+    }
+    
+  }
+  @media (min-width: 500px) and (max-width:600px) {
+    .containerforhistory{
+        width: 30%;
+        margin-top: -2px;
+    }
+    .amount{
+        margin-left: 120px;
+    }
+    .options{
+        margin-left: 310px;
+        width: 15%;
+        height: 20%;
+        
+    }
+    .item1{
+        margin-left: 200px;
+        margin-top: -15px;
+    }
+  }
+  
+  @media (min-width: 600px) and (max-width:800px){
+    .containerforhistory{
+        width: 51.5%;
+        margin-top: -2px;
+        margin-left: 200px;
+    }
+    .amount{
+        margin-left: 200px;
+    }
+    .options{
+        margin-left: 450px;
+        width: 15%;
+        height: 20%;
+        
+    }
+    .item1{
+        margin-left: 280px;
+        margin-top: -15px;
+    }
+  }
+  @media (min-width: 800px) and (max-width:1000px){
+    .containerforhistory{
+        width: 58.5%;
+        margin-top: -2px;
+        margin-left: 200px;
+    }
+    .amount{
+        margin-left: 300px;
+    }
+    .options{
+        margin-left: 520px;
+        width: 15%;
+        height: 20%;
+        
+    }
+    .item1{
+        margin-left: 280px;
+        margin-top: -15px;
+    }
+  }
+  @media (min-width: 1000px) and (max-width:2000px){
+    .containerforhistory{
+        width: 92%;
+        margin-top: -2px;
+        margin-left: 200px;
+    }
+    .amount{
+        margin-left: 300px;
+    }
+    .options{
+        margin-left: 520px;
+        width: 15%;
+        height: 20%;
+        
+    }
+    .item1{
+        margin-left: 280px;
+        margin-top: -15px;
+    }
+  }
+
+
+  
+
+
+
