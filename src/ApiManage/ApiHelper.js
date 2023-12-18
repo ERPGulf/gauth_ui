@@ -139,3 +139,30 @@ export const createUser = async (name, userEmail, mobilePhone, password) => {
     return Promise.reject(error);
   }
 };
+
+
+export const generateResetPasswordKey = async () => {
+  try {
+    const accessToken = localStorage.getItem("access_token");
+
+    const formData = new URLSearchParams();
+    formData.append('user', 'hiba@gmail,com'); // Use the passed email parameter
+
+    // Make the POST request
+    const { data } = await instance.post(
+      'auction_app.gauth.g_generate_reset_password_key',
+      formData.toString(), // Convert FormData to a URL-encoded string
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return Promise.resolve(data);
+  } catch (error) {
+    console.error(`Error creating reset key: ${error}`);
+    return Promise.reject(error);
+  }
+};
