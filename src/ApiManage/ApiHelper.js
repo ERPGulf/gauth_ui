@@ -18,7 +18,7 @@ export const generateToken = async () => {
         },
       }
     );
-    console.log(data, "data")
+    console.log(data, "data");
     localStorage.setItem("access_token", data.message.access_token);
     localStorage.setItem("refresh_token", data.message.refresh_token);
     return Promise.resolve(data);
@@ -47,7 +47,7 @@ export const refreshToken = async () => {
         },
       }
     );
-    console.log(data,'refresh data');
+    console.log(data, "refresh data");
     return data.message.access_token;
   } catch (refreshError) {
     // Handle the refresh token request error
@@ -82,22 +82,20 @@ export const getMessages = async () => {
   }
 };
 
-
-
 export const isUserAvailable = async (mobilePhone, userEmail) => {
   try {
     const accessToken = localStorage.getItem("access_token");
 
     // Make the POST request
     const { data } = await instance.post(
-      'auction_app.gauth.is_user_available',
+      "auction_app.gauth.is_user_available",
       {
         mobile_phone: mobilePhone,
         user_email: userEmail,
       },
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          "Content-Type": "application/x-www-form-urlencoded",
           Authorization: `Bearer ${accessToken}`,
         },
       }
@@ -116,20 +114,20 @@ export const createUser = async (name, userEmail, mobilePhone, password) => {
 
     // Create form data
     const formData = new FormData();
-    formData.append('full_name', name);
-    formData.append('password', password);
-    formData.append('mobile_no', mobilePhone);
-    formData.append('email', userEmail);
-    formData.append('role', 'Auction');
+    formData.append("full_name", name);
+    formData.append("password", password);
+    formData.append("mobile_no", mobilePhone);
+    formData.append("email", userEmail);
+    formData.append("role", "Auction");
 
     // Make the POST request
     const { data } = await instance.post(
-      'gauth.gauth.gauth.g_create_user',
+      "gauth.gauth.gauth.g_create_user",
       formData,
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': `Bearer ${accessToken}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -141,26 +139,25 @@ export const createUser = async (name, userEmail, mobilePhone, password) => {
   }
 };
 
-
 export const generateResetPasswordKey = async () => {
   try {
     const accessToken = localStorage.getItem("access_token");
 
-    const formData = new URLSearchParams();
-    formData.append('user', 'hiba@gmail,com'); // Use the passed email parameter
+    const formData = new FormData();
+    formData.append("user", "hiba@gmail,com"); // Use the passed email parameter
 
     // Make the POST request
     const { data } = await instance.post(
-      'auction_app.gauth.g_generate_reset_password_key',
+      "auction_app.gauth.g_generate_reset_password_key",
       formData.toString(), // Convert FormData to a URL-encoded string
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': `Bearer ${accessToken}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
-      console.log(data,'reset data')
+    console.log(data, "reset data");
     return Promise.resolve(data);
   } catch (error) {
     console.error(`Error creating reset key: ${error}`);
