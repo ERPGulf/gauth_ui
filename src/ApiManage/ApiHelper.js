@@ -47,7 +47,7 @@ export const refreshToken = async () => {
       }
     );
     console.log(data);
-    return data.message.access_token;
+    return data.access_token;
   } catch (refreshError) {
     // Handle the refresh token request error
     console.error("Error refreshing token:", refreshError);
