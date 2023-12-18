@@ -18,6 +18,7 @@ export const generateToken = async () => {
         },
       }
     );
+    console.log(data, "data")
     localStorage.setItem("access_token", data.message.access_token);
     localStorage.setItem("refresh_token", data.message.refresh_token);
     return Promise.resolve(data);
@@ -46,7 +47,7 @@ export const refreshToken = async () => {
         },
       }
     );
-    console.log(data);
+    console.log(data,'refresh data');
     return data.message.access_token;
   } catch (refreshError) {
     // Handle the refresh token request error
@@ -159,7 +160,7 @@ export const generateResetPasswordKey = async () => {
         },
       }
     );
-
+      console.log(data,'reset data')
     return Promise.resolve(data);
   } catch (error) {
     console.error(`Error creating reset key: ${error}`);
