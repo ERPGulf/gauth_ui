@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { generateToken, generateResetPasswordKey } from '../../ApiManage/ApiHelper';
 
 const Forgetpassword = () => {
+  const [email, setEmail] = useState('');
 
   const handleClick = async () => {
     try {
@@ -9,7 +10,8 @@ const Forgetpassword = () => {
       generateToken()
 
       // Call generateResetPasswordKey
-      const response = await generateResetPasswordKey();
+      const response = await generateResetPasswordKey(email);
+      console.log(email);
       console.log('Reset Password Key Response:', response);
 
     } catch (error) {
@@ -19,9 +21,17 @@ const Forgetpassword = () => {
 
   return (
     <div className="container">
-      <h1 style={{ color: 'black' }}>hi</h1>
+      
+      <input 
+      style={{ color: 'black' }}
+      type="text" 
+      placeholder="Enter your email" 
+      value={email} 
+      onChange={e => setEmail(e.target.value)}
+      />
       <button onClick={handleClick}>Generate Token and Reset Key</button>
-      <p>Reset Key: {resetKey}</p>
+      
+      
     </div>
   );
 };
