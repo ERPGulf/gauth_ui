@@ -197,3 +197,28 @@ export const checkPasswordStrength = async (password) => {
   }
 };
 
+export const updatePassword = async(newPassword,resetKey) =>{
+  try{
+    const updatePasswordResponse = await instance.post(
+      `frappe.core.doctype.user.user.update_password`,
+      {
+        new_password: newPassword,
+        key: resetKey,
+      },
+      {
+        headers: {
+          'Cookie': 'full_name=Mumtaz%2032; sid=834d08adda118bf4a9761bade5ab686f4afcdd40db680ff103663ea7; system_user=yes; user_id=mumtaz32%40erpgulf.com; user_image=',
+        },
+      }
+    );
+    
+    console.log('Update Password Response:', updatePasswordResponse);
+    return updatePasswordResponse;
+  }
+  catch (error) {
+    console.error(`Error updating password: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
+
