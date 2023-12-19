@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { generateToken, generateResetPasswordKey, checkPasswordStrength} from '../../ApiManage/ApiHelper';
+import { generateToken, generateResetPasswordKey, checkPasswordStrength } from '../../ApiManage/ApiHelper';
 import instance from '../../ApiManage/Axios';
 
-const Forgetpassword = () => {
+const ForgetPassword = () => {
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [resetKey, setResetKey] = useState('');
   const [isResetKeyGenerated, setIsResetKeyGenerated] = useState(false);
   const [validationError, setValidationError] = useState('');
+  const [updateSuccess, setUpdateSuccess] = useState(false); // Added state for update success
 
   const handleClick = async (e) => {
     e.preventDefault();
-    generateToken();
+
     try {
+      generateToken();
       // Call generateResetPasswordKey
       const resetKeyResponse = await generateResetPasswordKey(email);
       console.log('Reset Key Response:', resetKeyResponse);
@@ -59,7 +61,13 @@ const Forgetpassword = () => {
         );
 
         console.log('Update Password Response:', updatePasswordResponse);
-        // Add your logic to handle the update password response as needed
+
+        // Check if the update was successful
+        if (updatePasswordResponse && updatePasswordResponse.data ) {
+          setUpdateSuccess(true);
+        } else {
+          setUpdateSuccess(false);
+        }
       } else {
         // Set validation error if password strength is not sufficient
         setValidationError('Password strength does not meet requirements. Please choose another password.');
@@ -68,7 +76,6 @@ const Forgetpassword = () => {
       console.error('Error during password update:', error);
     }
   };
-
 
   return (
     <div className="container">
@@ -79,11 +86,11 @@ const Forgetpassword = () => {
       />
       {!isResetKeyGenerated ? (
         <form onSubmit={handleClick}>
-          <input 
+          <input
             className='email'
-            type="text" 
-            placeholder="Enter your email" 
-            value={email} 
+            type="text"
+            placeholder="Enter your email"
+            value={email}
             onChange={e => setEmail(e.target.value)}
           />
           <p></p>
@@ -96,7 +103,7 @@ const Forgetpassword = () => {
             type="text"
             placeholder="Enter reset key"
             value={resetKey}
-            
+            readOnly
           />
           <input
             className='email'
@@ -108,10 +115,11 @@ const Forgetpassword = () => {
           <p></p>
           <button className='continue' type="submit">Reset Password</button>
           {validationError && <p>{validationError}</p>}
+          {updateSuccess && <p>Password updated successfully!</p>}
         </form>
       )}
     </div>
   );
 };
 
-export default Forgetpassword;
+export default ForgetPassword;
