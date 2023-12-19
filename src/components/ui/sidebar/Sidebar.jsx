@@ -58,15 +58,7 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
     }
   }, [showMsgBox]);
 
-  const handleLogin = () => {
-    generateToken()
-      .then((response) => {
-        alert("Login Successful");
-      })
-      .catch((error) => {
-        alert("Login Failed");
-      });
-  };
+
   return (
     <div
       className={`containerforsidebar ${isSidebarOpen ? "" : "closedsidebar"}`}
@@ -101,9 +93,7 @@ const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
       <h3 className="names">NodeBalancers</h3>
       <h3 className="names">Firewalls</h3>
       <h3 className="names">Images</h3>
-      <button className="names" onClick={handleLogin}>
-        login
-      </button>
+     
 
       {showProfileBox && (
         <div className="profile-box">
