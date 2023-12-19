@@ -47,7 +47,7 @@ export const refreshToken = async () => {
       }
     );
     console.log(data);
-    return data.access_token;
+    return data;
   } catch (refreshError) {
     // Handle the refresh token request error
     console.error("Error refreshing token:", refreshError);
@@ -161,11 +161,39 @@ export const generateResetPasswordKey = async (email) => {
     );
 
     // Log the entire response object
-    console.log('Full response:', response);
-
+    console.log('Reset Key:', response.data.reset_key);
+    return response;
    
   } catch (error) {
     console.error(`Error creating reset key: ${error}`);
     return Promise.reject(error);
   }
 };
+
+export const checkPasswordStrength = async (password) => {
+  try{
+    const accessToken = localStorage.getItem("access_token");
+
+    const formData = new URLSearchParams();
+    formData.append('new_password', password);
+
+    const response = await instance.post(
+      'frappe.core.doctype.user.user.test_password_strength',
+      formData.toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      }
+
+    );
+    console.log('Validation', response.data.message.feedback.password_policy_validation_passed);
+    return response;
+   
+  } catch (error) {
+    console.error(`Error creating reset key: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
