@@ -337,3 +337,49 @@ export const NewPassword = async(username,newPassword) =>{
   }
 };
 
+export const getTime = async() =>{
+  try{
+    
+    const response = await instance.post(
+      `gauth.gauth.gauth.time`,
+      {
+        headers: {
+          'Cookie': 'full_name=Mumtaz%2032; sid=834d08adda118bf4a9761bade5ab686f4afcdd40db680ff103663ea7; system_user=yes; user_id=mumtaz32%40erpgulf.com; user_image=',
+        },
+      }
+    );
+    
+    console.log('Time:', response);
+    return response;
+  }
+  catch (error) {
+    console.error(`${error}`);
+    return Promise.reject(error);
+  }
+};
+
+
+export const whoIami = async() =>{
+  try{
+    const accessToken = localStorage.getItem("access_token");
+    const response = await instance.post(
+      `gauth.gauth.gauth.whoami`,
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Cookie': 'full_name=Mumtaz%2032; sid=834d08adda118bf4a9761bade5ab686f4afcdd40db680ff103663ea7; system_user=yes; user_id=mumtaz32%40erpgulf.com; user_image=',
+        },
+      }
+    );
+    
+    console.log('Message:', response);
+    return response;
+  }
+  catch (error) {
+    console.error(`${error}`);
+    return Promise.reject(error);
+  }
+};
+
+
+

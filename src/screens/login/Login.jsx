@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
-import { generateToken } from '../../ApiManage/ApiHelper';
+import { generateToken, getTime, whoIami } from '../../ApiManage/ApiHelper';
 
 const Login = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [time, setTime] = useState('');
+  const [who, setWho] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +39,31 @@ const Login = () => {
   const handleLogin =() => {
     generateToken();
   }
+  
+  const handleTime = async (e) => {
+    e.preventDefault();
+    try{
+      const getServerTime = await getTime();
+      setTime(getServerTime.data.message.data.serverTime);
+      console.log(getServerTime.data.message.data);
+    }catch (error) {
+      
+        console.error('Error ', error);
+    } 
+  };
+  const handleWho = async (e) => {
+    e.preventDefault();
+    generateToken();
+    try{
+      const getWho = await whoIami();
+      setWho(getWho.data.message);
+      console.log(getWho);
+    }catch (error) {
+      
+        console.error('Error ', error);
+    } 
+  };
+
 
   return (
     <div className='container'>
@@ -92,7 +119,17 @@ const Login = () => {
         <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleEnableuser}>
           Enable Account?
         </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleTime}>
+          Get Time
+        </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleWho}>
+          Check who loggedin Currently
+        </span>
+        <p style={{color:'black'}}>{who}</p>
+        <p style={{color:'black',marginLeft:'15%',marginTop:'-103%',fontSize:'20px'}}>{time}</p>
+        
       </p>
+      
     </div>
   );
 };
