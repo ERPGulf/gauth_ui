@@ -47,8 +47,6 @@ const ForgetPassword = () => {
       if (strengthResponse && strengthResponse.data && strengthResponse.data.message.feedback.password_policy_validation_passed) {
         // Call updatePassword function
         const updatePasswordResponse = await updatePassword(newPassword, resetKey);
-          
-  
         console.log('Update Password Response:', updatePasswordResponse);
   
         // Check if the update was successful

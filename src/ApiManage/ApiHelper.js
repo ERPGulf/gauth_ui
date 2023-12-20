@@ -285,7 +285,7 @@ export const getUsername = async(email , mobile_no) =>{
     const accessToken = localStorage.getItem("access_token");
 
     const response = await instance.post(
-      `auction_app.gauth.g_delete_user`,
+      `auction_app.gauth.get_user_name`,
       {
         user_email: email,
         mobile_phone:  mobile_no, 
@@ -298,11 +298,11 @@ export const getUsername = async(email , mobile_no) =>{
       }
     );
     
-    console.log('enable:', response);
-    return updatePasswordResponse;
+    console.log('username:', response.data.message[0].name);
+    return response;
   }
   catch (error) {
-    console.error(`Error Deleting user: ${error}`);
+    console.error(`Error getting username: ${error}`);
     return Promise.reject(error);
   }
 };

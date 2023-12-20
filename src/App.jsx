@@ -9,6 +9,7 @@ import Forgetpassword from './screens/forgetpassword/Forgetpassword';
 import { Changepassword } from './screens/changePassword/Changepassword';
 import { Deleteuser } from './screens/Deleteuser/Deleteuser';
 import { Disableaccount } from './screens/DisableAccount/Disableaccount';
+import { Getuser } from './screens/getuser/Getuser';
 
 
 
@@ -26,6 +27,7 @@ function App() {
             <Route path='/Changepassword' element={<Changepassword/>}/>
             <Route path='/DeleteAccount' element={<Deleteuser/>}/>
             <Route path='/DisableAccount' element={<Disableaccount/>}/>
+            <Route path='/getUser' element={<Getuser/>}/>
 
           </Routes>
         </UserProvider>

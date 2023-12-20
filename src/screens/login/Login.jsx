@@ -24,6 +24,10 @@ const Login = () => {
     // Trigger navigation to the Signup page
     navigate('/Signup');
   };
+  const handleGetuser = () => {
+    // Trigger navigation to the Signup page
+    navigate('/Getuser');
+  };
 
   const handleLogin =() => {
     generateToken();
@@ -76,6 +80,9 @@ const Login = () => {
         </span>
         <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleSignupClick}>
           New user?
+        </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleGetuser}>
+          Forgot username?
         </span>
       </p>
     </div>
