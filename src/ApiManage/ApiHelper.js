@@ -199,6 +199,7 @@ export const checkPasswordStrength = async (password) => {
 
 export const updatePassword = async(newPassword,resetKey) =>{
   try{
+    
     const updatePasswordResponse = await instance.post(
       `frappe.core.doctype.user.user.update_password`,
       {
@@ -221,4 +222,116 @@ export const updatePassword = async(newPassword,resetKey) =>{
   }
 };
 
+export const enableOrDisable = async(username, email , mobile_no, enableuser) =>{
+  try{
+    const accessToken = localStorage.getItem("access_token");
+
+    const response = await instance.post(
+      `auction_app.gauth.g_user_enable`,
+      {
+        username: username,
+        email: email,
+        mobile_no: mobile_no,
+        enable_user: 'False',
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Cookie': 'full_name=Mumtaz%2032; sid=834d08adda118bf4a9761bade5ab686f4afcdd40db680ff103663ea7; system_user=yes; user_id=mumtaz32%40erpgulf.com; user_image=',
+        },
+      }
+    );
+    
+    console.log('enable:', response);
+    return response;
+  }
+  catch (error) {
+    console.error(`Error enable/disable user: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
+export const deleteUser_ = async(username, email , mobile_no) =>{
+  try{
+    const accessToken = localStorage.getItem("access_token");
+
+    const response = await instance.post(
+      `auction_app.gauth.g_delete_user`,
+      {
+        username: username,
+        email: email,
+        mobile_no: mobile_no,
+        
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Cookie': 'full_name=Mumtaz%2032; sid=834d08adda118bf4a9761bade5ab686f4afcdd40db680ff103663ea7; system_user=yes; user_id=mumtaz32%40erpgulf.com; user_image=',
+        },
+      }
+    );
+    
+    console.log('Deleted Account:', response.data.message);
+    return updatePasswordResponse;
+  }
+  catch (error) {
+    console.error(`Error Deleting user: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
+export const getUsername = async(email , mobile_no) =>{
+  try{
+    const accessToken = localStorage.getItem("access_token");
+
+    const response = await instance.post(
+      `auction_app.gauth.get_user_name`,
+      {
+        user_email: email,
+        mobile_phone:  mobile_no, 
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Cookie': 'full_name=Mumtaz%2032; sid=834d08adda118bf4a9761bade5ab686f4afcdd40db680ff103663ea7; system_user=yes; user_id=mumtaz32%40erpgulf.com; user_image=',
+        },
+      }
+    );
+    
+    console.log('username:', response.data.message[0].name);
+    return response;
+  }
+  catch (error) {
+    console.error(`Error getting username: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
+export const NewPassword = async(username,newPassword) =>{
+  try{
+    const accessToken = localStorage.getItem("access_token");
+    
+    const response = await instance.post(
+      `auction_app.gauth.g_update_password`,
+      {
+        username:username,
+        password: newPassword,
+        
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Cookie': 'full_name=Mumtaz%2032; sid=834d08adda118bf4a9761bade5ab686f4afcdd40db680ff103663ea7; system_user=yes; user_id=mumtaz32%40erpgulf.com; user_image=',
+        },
+      }
+    );
+    
+    console.log('Update Password Response:', response);
+    return response;
+  }
+  catch (error) {
+    console.error(`Error updating password: ${error}`);
+    return Promise.reject(error);
+  }
+};
 

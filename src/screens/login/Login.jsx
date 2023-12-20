@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import { generateToken } from '../../ApiManage/ApiHelper';
 
 const Login = () => {
   const [identifier, setIdentifier] = useState('');
@@ -23,6 +24,14 @@ const Login = () => {
     // Trigger navigation to the Signup page
     navigate('/Signup');
   };
+  const handleGetuser = () => {
+    // Trigger navigation to the Signup page
+    navigate('/Getuser');
+  };
+
+  const handleLogin =() => {
+    generateToken();
+  }
 
   return (
     <div className='container'>
@@ -60,7 +69,7 @@ const Login = () => {
         />
         {/* Login Button */}
         <p></p>
-        <button className='continue' type='submit'>
+        <button className='continue' type='submit' onClick={handleLogin}>
           Login
         </button>
       </form>
@@ -71,6 +80,9 @@ const Login = () => {
         </span>
         <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleSignupClick}>
           New user?
+        </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleGetuser}>
+          Forgot username?
         </span>
       </p>
     </div>
