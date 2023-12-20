@@ -222,7 +222,8 @@ export const updatePassword = async(newPassword,resetKey) =>{
   }
 };
 
-export const enableOrDisable = async(username, email , mobile_no, enableuser) =>{
+
+export const EnableOrDisable = async(username, email , mobile_no, enableuser) =>{
   try{
     const accessToken = localStorage.getItem("access_token");
 
@@ -232,7 +233,7 @@ export const enableOrDisable = async(username, email , mobile_no, enableuser) =>
         username: username,
         email: email,
         mobile_no: mobile_no,
-        enable_user: 'False',
+        enable_user: enableuser,
       },
       {
         headers: {
@@ -250,6 +251,7 @@ export const enableOrDisable = async(username, email , mobile_no, enableuser) =>
     return Promise.reject(error);
   }
 };
+
 
 export const deleteUser_ = async(username, email , mobile_no) =>{
   try{
@@ -272,7 +274,7 @@ export const deleteUser_ = async(username, email , mobile_no) =>{
     );
     
     console.log('Deleted Account:', response.data.message);
-    return updatePasswordResponse;
+    return response;
   }
   catch (error) {
     console.error(`Error Deleting user: ${error}`);

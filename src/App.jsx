@@ -10,6 +10,7 @@ import { Changepassword } from './screens/changePassword/Changepassword';
 import { Deleteuser } from './screens/Deleteuser/Deleteuser';
 import { Disableaccount } from './screens/DisableAccount/Disableaccount';
 import { Getuser } from './screens/getuser/Getuser';
+import { Enableuser } from './screens/Enableuser/Enableuser';
 
 
 
@@ -26,8 +27,8 @@ function App() {
             <Route path='/Newuser' element={<Newuser/>}/>
             <Route path='/Changepassword' element={<Changepassword/>}/>
             <Route path='/DeleteAccount' element={<Deleteuser/>}/>
-            <Route path='/DisableAccount' element={<Disableaccount/>}/>
             <Route path='/getUser' element={<Getuser/>}/>
+            <Route path='/EnableAccount' element={<Enableuser/>}/>
 
           </Routes>
         </UserProvider>

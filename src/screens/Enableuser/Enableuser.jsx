@@ -2,21 +2,22 @@ import React, { useState } from 'react'
 import { EnableOrDisable } from '../../ApiManage/ApiHelper';
 
 
-export const Disableaccount = () => {
+
+export const Enableuser = () => {
     const [username, setUsername] =useState();
     const [email, setEmail] = useState();
     const [mobileno, setMobileno] = useState();
     const [message, setMessage] = useState();
-    const [enable , setEnable] = useState('False');
+    const [enable , setEnable] = useState('True');
 
-    const handleDisableuser = async (e) => {
+    const handleEnableuser = async (e) => {
         e.preventDefault();
         try{
             const user = await EnableOrDisable(username, email, mobileno,enable);
-            setMessage(disableUser.data.message);
-            console.log('acc',disableUser.data.message);
+            setMessage(user.data.message);
+            console.log('Message',user.data.message);
         }catch (error) {
-            console.error('Error Disbling Account:', error);
+            console.error('Error Enabling Account:', error);
         } 
     };
   return (
@@ -31,7 +32,7 @@ export const Disableaccount = () => {
         borderRadius: '2%',
         marginLeft: '40%',
         }}>
-            <h1 style={{color:'black',marginLeft:'50px',marginTop:'50px'}}>Disable Account</h1>
+            <h1 style={{color:'black',marginLeft:'50px',marginTop:'50px'}}>Enable Account</h1>
             <form style={{marginTop:'80px'}} >
             <input
             className='email'
@@ -57,7 +58,7 @@ export const Disableaccount = () => {
             onChange={e => setMobileno(e.target.value)}
           />
           <p></p>
-          <button className='continue' type="submit" onClick={handleDisableuser}>Disable Account</button>
+          <button className='continue' type="submit" onClick={handleEnableuser}>Enable Account</button>
         </form>
         <p style={{color:'black',marginLeft:'80px'}}>{message}</p>
     </div>
