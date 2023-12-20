@@ -29,6 +29,11 @@ const Login = () => {
     navigate('/Getuser');
   };
 
+  const handleEnableuser = () => {
+    // Trigger navigation to the Signup page
+    navigate('/EnableAccount');
+  };
+
   const handleLogin =() => {
     generateToken();
   }
@@ -83,6 +88,9 @@ const Login = () => {
         </span>
         <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleGetuser}>
           Forgot username?
+        </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleEnableuser}>
+          Enable Account?
         </span>
       </p>
     </div>

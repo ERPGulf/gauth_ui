@@ -6,15 +6,18 @@ export const Deleteuser = () => {
     const [email, setEmail] = useState();
     const [mobileno, setMobileno] = useState();
     const [message, setMessage] = useState();
+    const [error, setError] = useState();
     
     const handleDeleteuser = async (e) => {
         e.preventDefault();
         try{
             const deleteUserAccount = await deleteUser_(username, email, mobileno);
             setMessage(deleteUserAccount.data.message);
-            console.log(deleteUserAccount.data.message);
+            console.log(deleteUserAccount);
+            
         }catch (error) {
-            console.error('Error changing password:', error);
+          setError("User not found");
+            console.error('Error Deleting Account:', error);
         } 
     };
 
@@ -58,7 +61,7 @@ export const Deleteuser = () => {
           <p></p>
           <button className='continue' type="submit" onClick={handleDeleteuser}>Delete Account</button>
         </form>
-        <p style={{color:'black',marginLeft:'80px'}}>{message}</p>
+        <p style={{color:'black',marginLeft:'80px'}}>{message}{error}</p>
     </div>
        
   )
