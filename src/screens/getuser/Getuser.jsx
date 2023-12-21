@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { generateToken, getUsername } from '../../ApiManage/ApiHelper';
+import { getUsername, tokenGenerated } from '../../ApiManage/ApiHelper';
 
 export const Getuser = () => {
     const [email, setEmail] = useState();
@@ -8,7 +8,7 @@ export const Getuser = () => {
 
     const handleGetuser = async (e) => {
         e.preventDefault();
-        generateToken();
+        tokenGenerated();
         try{
             const userName = await getUsername(email, mobileno);
             setMessage(userName.data.message[0].name);

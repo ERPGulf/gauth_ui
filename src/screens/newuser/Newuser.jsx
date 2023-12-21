@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { generateToken, createUser } from '../../ApiManage/ApiHelper';
+import {  createUser } from '../../ApiManage/ApiHelper';
 import { useNavigate } from 'react-router-dom';
 import './Newuser.style.css';
 import UserContext from '../../Contexts/User/UserContext';

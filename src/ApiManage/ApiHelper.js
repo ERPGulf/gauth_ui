@@ -18,8 +18,8 @@ export const generateToken = async () => {
         },
       }
     );
-    localStorage.setItem("access_token", data.message.access_token);
-    localStorage.setItem("refresh_token", data.message.refresh_token);
+  
+    
     return Promise.resolve(data);
   } catch (error) {
     console.error(`Error generating token: ${error}`);
@@ -37,7 +37,7 @@ export const refreshToken = async () => {
     formData.append("refresh_token", refresh_token);
 
     // Make a request to refresh the access token using the refresh token
-    const { data } = await instance.post(
+    const response = await instance.post(
       "frappe.integrations.oauth2.get_token",
       formData,
       {
@@ -46,8 +46,9 @@ export const refreshToken = async () => {
         },
       }
     );
-    console.log(data);
-    return data;
+    localStorage.setItem("access_token", response.data.access_token);
+    
+    return response;
   } catch (refreshError) {
     // Handle the refresh token request error
     console.error("Error refreshing token:", refreshError);
@@ -55,13 +56,38 @@ export const refreshToken = async () => {
   }
 };
 
+export const tokenGenerated = async () => {
+  try {
+    // Call generateToken to get refresh tokens
+    const generateTokenResponse = await generateToken();
+    localStorage.setItem("refresh_token", generateTokenResponse.message.refresh_token);
+    localStorage.setItem("access_token", generateTokenResponse.message.access_token);
+    const accessToken = localStorage.getItem("access_token");
+    
+    if (!accessToken) {
+      // Access token is missing or not valid, call refreshToken to refresh it
+      const refreshTokenResponse = await refreshToken();
+
+      return Promise.resolve(refreshTokenResponse);
+    }
+
+    // Access token is present and assumed to be valid, return it
+    return Promise.resolve({ access_token: accessToken });
+  } catch (error) {
+    console.error(`Error generating or refreshing token: ${error}`);
+    return Promise.reject(error);
+  }
+};
+
+
 export const getMessages = async () => {
   try {
     const accessToken = localStorage.getItem("access_token");
     // Set the authorization header with the access token
     console.log(accessToken);
-    // Make the GET request
-    const { data } = await instance.post(
+
+    // Make the initial GET request
+    const initialResponse = await instance.post(
       "employee_app.attendance_api.error_log",
       {
         limit_start: 0,
@@ -74,10 +100,72 @@ export const getMessages = async () => {
         },
       }
     );
-    return Promise.resolve(data);
+
+    // Return the data if the initial request is successful
+    return Promise.resolve(initialResponse.data);
   } catch (error) {
-    console.error(`Error getting messages: ${error}`);
-    return Promise.reject(error);
+    if (error.response && error.response.status === 403) {
+      // If the error is Forbidden, refresh the token and retry the request
+      try {
+        const newAccessToken = await refreshToken();
+        const accessToken = newAccessToken.data.access_token
+        
+        // Update the authorization header with the new token
+        instance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+        // Retry the original request
+        const retryResponse = await instance.post(
+          "employee_app.attendance_api.error_log",
+          {
+            limit_start: 0,
+            limit_page_length: 50,
+          },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              Authorization: `Bearer ${newAccessToken}`,
+            },
+          }
+        );
+
+        // Return the data if the retry request is successful
+        return Promise.resolve(retryResponse.data);
+      } catch (refreshError) {
+        console.error(`Error refreshing token: ${refreshError}`);
+        return Promise.reject(refreshError);
+      }
+    } else {
+      // For other errors, log, call refreshToken, and reject the request
+      console.error(`Error getting messages: ${error}`);
+      try {
+        const newAccessToken = await refreshToken();
+        const accessToken = newAccessToken.data.access_token
+        
+        // Update the authorization header with the new token
+        instance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+        // Retry the original request
+        const retryResponse = await instance.post(
+          "employee_app.attendance_api.error_log",
+          {
+            limit_start: 0,
+            limit_page_length: 50,
+          },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              Authorization: `Bearer ${newAccessToken}`,
+            },
+          }
+        );
+
+        // Return the data if the retry request is successful
+        return Promise.resolve(retryResponse.data);
+      } catch (refreshError) {
+        console.error(`Error refreshing token during retry: ${refreshError}`);
+        return Promise.reject(refreshError);
+      }
+    }
   }
 };
 

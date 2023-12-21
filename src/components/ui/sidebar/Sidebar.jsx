@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Sidebar.style.css";
-import { generateToken, getMessages } from "../../../ApiManage/ApiHelper";
+import { getMessages, refreshToken } from "../../../ApiManage/ApiHelper";
 
 const Sidebar = ({ onSidebarToggle, isSidebarOpen }) => {
   const [showProfileBox, setShowProfileBox] = useState(false);
