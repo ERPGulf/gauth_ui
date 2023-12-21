@@ -119,16 +119,16 @@ const Login = () => {
         <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleEnableuser}>
           Enable Account?
         </span>
-        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleTime}>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleWho}>
+          Check who loggedin
+        </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'12%'}} onClick={handleTime}>
           Get Time
         </span>
-        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleWho}>
-          Check who loggedin Currently
-        </span>
-        <p style={{color:'black'}}>{who}</p>
-        <p style={{color:'black',marginLeft:'15%',marginTop:'-103%',fontSize:'20px'}}>{time}</p>
+        <p style={{color:'black',marginLeft:'58%',marginTop:'-105%',fontSize:'12px'}}>{time}</p>
         
       </p>
+      {who && (<p style={{color:'black',fontSize:'20px',marginLeft:'20%',marginRight:'20%',marginTop:'20%',borderStyle: 'solid',borderColor: 'grey',borderWidth: '1px',backgroundColor:'white',paddingLeft:'50px'}}>User is {who}</p>)}
       
     </div>
   );
