@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { generateToken, generateResetPasswordKey, checkPasswordStrength, updatePassword } from '../../ApiManage/ApiHelper';
+import { generateResetPasswordKey, checkPasswordStrength, updatePassword, tokenGenerated } from '../../ApiManage/ApiHelper';
 
 
 const ForgetPassword = () => {
@@ -14,7 +14,7 @@ const ForgetPassword = () => {
     e.preventDefault();
 
     try {
-      generateToken();
+      tokenGenerated();
       // Call generateResetPasswordKey
       const resetKeyResponse = await generateResetPasswordKey(email);
       console.log('Reset Key Response:', resetKeyResponse);

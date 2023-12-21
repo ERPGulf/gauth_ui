@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
-import { generateToken, getTime, whoIami } from '../../ApiManage/ApiHelper';
+import { getTime, tokenGenerated, whoIami } from '../../ApiManage/ApiHelper';
 
 const Login = () => {
   const [identifier, setIdentifier] = useState('');
@@ -37,7 +37,8 @@ const Login = () => {
   };
 
   const handleLogin =() => {
-    generateToken();
+    tokenGenerated();
+    
   }
   
   const handleTime = async (e) => {
@@ -53,7 +54,7 @@ const Login = () => {
   };
   const handleWho = async (e) => {
     e.preventDefault();
-    generateToken();
+    tokenGenerated();
     try{
       const getWho = await whoIami();
       setWho(getWho.data.message);

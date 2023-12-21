@@ -1,7 +1,7 @@
 import React, { useState,useContext } from 'react';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
-import { isUserAvailable, generateToken } from '../../ApiManage/ApiHelper';
+import { isUserAvailable, tokenGenerated } from '../../ApiManage/ApiHelper';
 import Newuser from '../newuser/Newuser';
 import UserContext from '../../Contexts/User/UserContext';
 
@@ -22,7 +22,7 @@ export const Signup = () => {
     e.preventDefault();
     // Mark the form as submitted
     setIsFormSubmitted(true);
-    generateToken()
+    tokenGenerated()
       .then(async (response) => {
         // Check if the user is available
         try {
