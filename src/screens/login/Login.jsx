@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
-import { generateToken } from '../../ApiManage/ApiHelper';
+import { generateToken, getTime, whoIami } from '../../ApiManage/ApiHelper';
 
 const Login = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [time, setTime] = useState('');
+  const [who, setWho] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +39,31 @@ const Login = () => {
   const handleLogin =() => {
     generateToken();
   }
+  
+  const handleTime = async (e) => {
+    e.preventDefault();
+    try{
+      const getServerTime = await getTime();
+      setTime(getServerTime.data.message.data.serverTime);
+      console.log(getServerTime.data.message.data);
+    }catch (error) {
+      
+        console.error('Error ', error);
+    } 
+  };
+  const handleWho = async (e) => {
+    e.preventDefault();
+    generateToken();
+    try{
+      const getWho = await whoIami();
+      setWho(getWho.data.message);
+      console.log(getWho);
+    }catch (error) {
+      
+        console.error('Error ', error);
+    } 
+  };
+
 
   return (
     <div className='container'>
@@ -92,7 +119,17 @@ const Login = () => {
         <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleEnableuser}>
           Enable Account?
         </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'15%'}} onClick={handleWho}>
+          Check who loggedin
+        </span>
+        <span style={{ color: 'blue', cursor:'pointer', marginLeft:'12%'}} onClick={handleTime}>
+          Get Time
+        </span>
+        <p style={{color:'black',marginLeft:'58%',marginTop:'-105%',fontSize:'12px'}}>{time}</p>
+        
       </p>
+      {who && (<p style={{color:'black',fontSize:'20px',marginLeft:'20%',marginRight:'20%',marginTop:'20%',borderStyle: 'solid',borderColor: 'grey',borderWidth: '1px',backgroundColor:'white',paddingLeft:'50px'}}>User is {who}</p>)}
+      
     </div>
   );
 };
