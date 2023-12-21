@@ -61,12 +61,18 @@ export const tokenGenerated = async () => {
     // Call generateToken to get refresh tokens
     const generateTokenResponse = await generateToken();
     localStorage.setItem("refresh_token", generateTokenResponse.message.refresh_token);
-
-  
-    // Call refreshToken to refresh the access token
-    const refreshTokenResponse = await refreshToken();
+    localStorage.setItem("access_token", generateTokenResponse.message.access_token);
+    const accessToken = localStorage.getItem("access_token");
     
-    return Promise.resolve(refreshTokenResponse);
+    if (!accessToken) {
+      // Access token is missing or not valid, call refreshToken to refresh it
+      const refreshTokenResponse = await refreshToken();
+
+      return Promise.resolve(refreshTokenResponse);
+    }
+
+    // Access token is present and assumed to be valid, return it
+    return Promise.resolve({ access_token: accessToken });
   } catch (error) {
     console.error(`Error generating or refreshing token: ${error}`);
     return Promise.reject(error);
