@@ -29,6 +29,7 @@ function App() {
             <Route path='/DeleteAccount' element={<Deleteuser/>}/>
             <Route path='/getUser' element={<Getuser/>}/>
             <Route path='/EnableAccount' element={<Enableuser/>}/>
+            <Route path='/DisableAccount' element={<Disableaccount/>}/>
 
           </Routes>
         </UserProvider>

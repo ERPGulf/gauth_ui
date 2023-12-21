@@ -13,8 +13,8 @@ export const Disableaccount = () => {
         e.preventDefault();
         try{
             const user = await EnableOrDisable(username, email, mobileno,enable);
-            setMessage(disableUser.data.message);
-            console.log('acc',disableUser.data.message);
+            setMessage(user.data.message);
+            console.log('acc',user.data.message);
         }catch (error) {
             console.error('Error Disbling Account:', error);
         } 

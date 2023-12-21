@@ -128,7 +128,7 @@ const Login = () => {
         <p style={{color:'black',marginLeft:'58%',marginTop:'-105%',fontSize:'12px'}}>{time}</p>
         
       </p>
-      {who && (<p style={{color:'black',fontSize:'20px',marginLeft:'20%',marginRight:'20%',marginTop:'20%',borderStyle: 'solid',borderColor: 'grey',borderWidth: '1px',backgroundColor:'white',paddingLeft:'50px'}}>User is {who}</p>)}
+      {who && (<p style={{color:'black',fontSize:'20px',marginLeft:'20%',marginRight:'20%',marginTop:'110%',borderStyle: 'solid',borderColor: 'grey',borderWidth: '1px',backgroundColor:'white',paddingLeft:'50px'}}>User is {who}</p>)}
       
     </div>
   );
