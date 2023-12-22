@@ -14,7 +14,8 @@ export const Disableaccount = () => {
         try{
             const user = await EnableOrDisable(username, email, mobileno,enable);
             setMessage(user.data.message);
-            console.log('acc',user.data.message);
+            console.log('message:',user.data.message);
+
         }catch (error) {
             console.error('Error Disbling Account:', error);
         } 

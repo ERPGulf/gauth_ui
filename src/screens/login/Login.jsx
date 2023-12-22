@@ -126,11 +126,11 @@ const Login = () => {
         <span style={{ color: 'blue', cursor:'pointer', marginLeft:'12%'}} onClick={handleTime}>
           Get Time
         </span>
-        <p style={{color:'black',marginLeft:'58%',marginTop:'-105%',fontSize:'12px'}}>{time}</p>
+        {time &&(<p style={{color:'black',marginLeft:'58%',marginTop:'2%',fontSize:'12px'}}>{time}</p>)}
         
       </p>
-      {who && (<p style={{color:'black',fontSize:'20px',marginLeft:'20%',marginRight:'20%',marginTop:'110%',borderStyle: 'solid',borderColor: 'grey',borderWidth: '1px',backgroundColor:'white',paddingLeft:'50px'}}>User is {who}</p>)}
-      
+        {who && (<p style={{color:'black',fontSize:'20px',marginLeft:'10%',marginRight:'10%',marginTop:'7%',borderStyle: 'solid',borderColor: 'grey',borderWidth: '1px',backgroundColor:'white',paddingLeft:'20px'}}>User is {who}</p>)}
+
     </div>
   );
 };

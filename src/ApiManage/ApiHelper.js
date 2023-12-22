@@ -47,6 +47,7 @@ export const refreshToken = async () => {
       }
     );
     localStorage.setItem("access_token", response.data.access_token);
+    console.log("access_token from 2nd api", response.data.access_token);
     
     return response;
   } catch (refreshError) {
@@ -62,6 +63,7 @@ export const tokenGenerated = async () => {
     const generateTokenResponse = await generateToken();
     localStorage.setItem("refresh_token", generateTokenResponse.message.refresh_token);
     localStorage.setItem("access_token", generateTokenResponse.message.access_token);
+    console.log("access_token from first API", generateTokenResponse.message.access_token);
     const accessToken = localStorage.getItem("access_token");
     
     if (!accessToken) {
@@ -83,8 +85,6 @@ export const tokenGenerated = async () => {
 export const getMessages = async () => {
   try {
     const accessToken = localStorage.getItem("access_token");
-    // Set the authorization header with the access token
-    console.log(accessToken);
 
     // Make the initial GET request
     const initialResponse = await instance.post(
