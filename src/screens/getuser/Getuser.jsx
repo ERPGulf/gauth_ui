@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { getUsername, tokenGenerated } from '../../ApiManage/ApiHelper';
 
 export const Getuser = () => {
-    const [email, setEmail] = useState();
-    const [mobileno, setMobileno] = useState();
-    const [message, setMessage] = useState();
+    const [email, setEmail] = useState('');
+    const [mobileno, setMobileno] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleGetuser = async (e) => {
         e.preventDefault();

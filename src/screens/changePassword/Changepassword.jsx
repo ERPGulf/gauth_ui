@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { NewPassword, checkPasswordStrength } from '../../ApiManage/ApiHelper';
 
 export const Changepassword = () => {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [message, setMessage] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const [validationError, setValidationError] = useState('');
 
     const handleChangePassword = async (e) => {

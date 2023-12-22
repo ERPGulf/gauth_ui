@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { deleteUser_ } from '../../ApiManage/ApiHelper';
 
 export const Deleteuser = () => {
-    const [username, setUsername] =useState();
-    const [email, setEmail] = useState();
-    const [mobileno, setMobileno] = useState();
-    const [message, setMessage] = useState();
-    const [error, setError] = useState();
+    const [username, setUsername] =useState('');
+    const [email, setEmail] = useState('');
+    const [mobileno, setMobileno] = useState('');
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
     
     const handleDeleteuser = async (e) => {
         e.preventDefault();

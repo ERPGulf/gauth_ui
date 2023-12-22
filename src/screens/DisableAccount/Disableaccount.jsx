@@ -3,10 +3,10 @@ import { EnableOrDisable } from '../../ApiManage/ApiHelper';
 
 
 export const Disableaccount = () => {
-    const [username, setUsername] =useState();
-    const [email, setEmail] = useState();
-    const [mobileno, setMobileno] = useState();
-    const [message, setMessage] = useState();
+    const [username, setUsername] =useState('');
+    const [email, setEmail] = useState('');
+    const [mobileno, setMobileno] = useState('');
+    const [message, setMessage] = useState('');
     const [enable , setEnable] = useState('False');
 
     const handleDisableuser = async (e) => {
